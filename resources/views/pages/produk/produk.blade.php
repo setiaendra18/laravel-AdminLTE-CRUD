@@ -4,7 +4,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        @include('template.partials.beadcrumb')
+        @include('template.include.partials.beadcrumb')
         <!-- Main content -->
         <section class="content">
             <!-- Default box -->
@@ -25,7 +25,7 @@
                                 <th>Browser</th>
                                 <th>Platform(s)</th>
                                 <th>Engine version</th>
-                                <th>aksi</th>
+                                <th width="11%">aksi</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -36,7 +36,14 @@
                                 </td>
                                 <td>Win 95+</td>
                                 <td> 4</td>
-                                <td>X</td>
+                                <td>
+                                    <button type="button" class="btn btn-danger btn-sm" title="Hapus"><i
+                                            class="fa fa-trash"></i></button>
+                                    <button type="button" class="btn btn-primary btn-sm" title="Edit"><i
+                                            class="fa fa-edit"></i></button>
+                                    <button type="button" class="btn btn-warning btn-sm" title="Detail"><i
+                                            class="fa fa-eye"></i></button>
+                                </td>
                             </tr>
                             <tr>
                                 <td>Trident</td>
@@ -46,13 +53,14 @@
                                 <td>Win 95+</td>
                                 <td>5</td>
                                 <td>
-                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
-                                    <button type="button" class="btn btn-primary btn-sm">Edit</button>
+                                    <button type="button" class="btn btn-danger btn-sm"><i
+                                            class="fa fa-trash"></i></button>
+                                    <button type="button" class="btn btn-primary btn-sm"><i
+                                            class="fa fa-edit"></i></button>
+                                    <button type="button" class="btn btn-warning btn-sm"><i class="fa fa-eye"></i></button>
                                 </td>
                             </tr>
-
                         </tbody>
-
                     </table>
                 </div>
                 <!-- /.card-body -->
@@ -80,15 +88,23 @@
                 <div class="modal-body">
                     <form>
                         <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
+                            <label>Kategori Produk</label>
+                            <select class="form-control">
+                                <option>1</option>
+                                <option>2</option>
+                                <option>3</option>
+                                <option>4</option>
+                                <option>5</option>
+                            </select>
                         </div>
                         <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
+                            <label>Nama Produk</label>
+                            <input type="text" class="form-control" placeholder="Masukan Nama Produk .."
+                                name="nama_produk">
+                        </div>
+                        <div class="form-group">
+                            <label>Katerangan</label>
+                            <textarea class="form-control" rows="6" id="summernote"></textarea>
                         </div>
                 </div>
                 <div class="modal-footer">

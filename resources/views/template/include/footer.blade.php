@@ -15,5 +15,5 @@
 
 <!-- jQuery -->
 
-@include('template.partials.js')
+@include('template.include.partials.js')
 

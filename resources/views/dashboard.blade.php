@@ -4,7 +4,7 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
-        @include('template.partials.beadcrumb')
+        @include('template.include.partials.beadcrumb')
         <!-- Main content -->
         <section class="content">
             <!-- Default box -->

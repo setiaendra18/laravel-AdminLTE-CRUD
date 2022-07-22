@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class ProdukController extends Controller
+class DashboardController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,11 +13,11 @@ class ProdukController extends Controller
      */
     public function index()
     {
-        $title = "Produk";
+        $title = "Dashboard";
 
 
         return view(
-            "pages.produk.produk",
+            "dashboard",
             ["title" => $title]
         );
     }

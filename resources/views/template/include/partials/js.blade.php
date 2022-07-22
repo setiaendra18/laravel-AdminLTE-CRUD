@@ -4,7 +4,7 @@
 <!-- AdminLTE App -->
 <script src="{{ url('adminlte/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
-<script src="{{ url('adminlte/js/demo.js') }}"></script>
+
 
 
 <script src="{{ url('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -19,7 +19,31 @@
 <script src="{{ url('adminlte/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/datatables-buttons/js/buttons.print.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/datatables-buttons/js/buttons.colVis.min.js') }}"></script>
+<script src="{{ url('adminlte/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <script>
+    //sumbernotes
+    $(function() {
+        // Summernote
+        $('#summernote').summernote({
+                toolbar: [
+                    // [groupName, [list of button]]
+                    ['style', ['bold', 'italic', 'underline', 'clear']],
+                    
+                    ['fontsize', ['fontsize']],
+                    ['color', ['color']],
+                    ['para', ['ul', 'ol', 'paragraph']],
+                    ['height', ['height']]
+                ]
+            }
+
+        )
+
+        // CodeMirror
+        CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
+            mode: "htmlmixed",
+            theme: "monokai"
+        });
+    })
     //data tabels load
     $(function() {
         $("#example1").DataTable({

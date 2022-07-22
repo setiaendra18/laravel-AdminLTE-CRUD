@@ -9,7 +9,7 @@
           <!-- Sidebar user (optional) -->
           <div class="user-panel mt-3 pb-3 mb-3 d-flex">
               <div class="image">
-                  <img src="{{ url('adminlte/img/user2-160x160.jpg') }}" class="img-circle elevation-2" alt="User Image">
+                  <img src="{{ url('adminlte/img/icon/android-icon-48x48.png') }}" class="img-circle elevation-2" alt="User Image">
               </div>
               <div class="info">
                   <a href="#" class="d-block">Alexander Pierce</a>
@@ -21,13 +21,13 @@
                   data-accordion="false">
                   <li class="nav-item">
                       <a href="{{ route('produk') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
-                          <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon far fa-circle"></i>
                           <p>Produk</p>
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="{{ route('kategori-produk') }}" class="nav-link {{ request()->is('kategori-produk') ? 'active' : '' }}">
-                          <i class="nav-icon fas fa-th"></i>
+                        <i class="nav-icon far fa-circle"></i>
                           <p> Kategori Produk</p>
                       </a>
                   </li>

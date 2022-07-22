@@ -18,7 +18,7 @@ class KategoriProdukController extends Controller
 
 
         return view(
-            "kategori_produk",
+            "pages.kategori_produk.kategori_produk",
             ["title" => $title]
         );
     }
