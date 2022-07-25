@@ -20,7 +20,13 @@
               <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu"
                   data-accordion="false">
                   <li class="nav-item">
-                      <a href="{{ route('produk') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
+                    <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
+                      <i class="nav-icon far fa-circle"></i>
+                        <p>Dashboard</p>
+                    </a>
+                </li>
+                  <li class="nav-item">
+                      <a href="{{ route('produk') }}" class="nav-link {{ request()->is('produk') ? 'active' : '' }}">
                         <i class="nav-icon far fa-circle"></i>
                           <p>Produk</p>
                       </a>
@@ -31,6 +37,12 @@
                           <p> Kategori Produk</p>
                       </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="{{ route('alamat') }}" class="nav-link {{ request()->is('alamat') ? 'active' : '' }}">
+                      <i class="nav-icon far fa-circle"></i>
+                        <p> Alamat API</p>
+                    </a>
+                </li>
               </ul>
           </nav>
           <!-- /.sidebar-menu -->

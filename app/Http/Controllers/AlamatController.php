@@ -4,20 +4,16 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class DashboardController extends Controller
+class AlamatController extends Controller
 {
     public function __construct()
     {
         //global variabel untuk setting untuk judul halaman
-        $this->title = "Produk";
+        $this->title = "Dependent Dropdown API";
     }
     public function index()
     {
-
-        return view(
-            "dashboard",
-            ["title" => $this->title]
-        );
+        return view("pages.produk.produk", ["title" => $this->title]);
     }
     public function create()
     {

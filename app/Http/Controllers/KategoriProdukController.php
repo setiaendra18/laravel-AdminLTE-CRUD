@@ -1,91 +1,97 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use App\Models\ModelKategori;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-
 class KategoriProdukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        //global variabel untuk setting untuk judul halaman
+        $this->title = "Kategori Produk";
+    }
     public function index()
     {
-
-        $title = "Kategori Produk";
-
-
+        $kategori = ModelKategori::all();
         return view(
             "pages.kategori_produk.kategori_produk",
-            ["title" => $title]
+            [
+            "title" => $this->title, 
+            "kategori" => $kategori,
+            ]
         );
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
-        //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+         //validasi input user, error akan di kembalikan ke view
+        $this->validate($request, [
+            'nama_kategori' => 'required|string|min:3|max:25',
+        ]);
+        
+         //ekekusi input user, error akan di handle oleh SQL Exception
+        try {
+            ModelKategori::create([
+                'nama_kategori' => $request->nama_kategori,
+            ]);
+            return redirect()
+                ->route('kategori-produk')
+                ->with(['success' => ' ']);
+        } catch (QueryException $error_query) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with(['error' => $error_query->getMessage()]);
+        }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //validasi input user, error akan di kembalikan ke view
+        $this->validate($request, [
+            'nama_kategori' => 'required|string|min:3|max:25',
+        ]);
+
+        //cari data pada database dengan id yang sesuai request user
+        $kategori = ModelKategori::findOrFail($request->id_kategori);
+
+        //ekekusi input user, error akan di handle oleh SQL Exception
+        try {
+            $kategori->update([
+                'nama_kategori' => $request->nama_kategori,
+            ]);
+            return redirect()
+                ->route('kategori-produk')
+                ->with(['info' => ' ']);
+        } catch (QueryException $error_query) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with(['error' => $error_query->getMessage()]);
+        }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $kategori = ModelKategori::findOrFail($request->id_kategori);
+        try {
+            $kategori->delete();
+            return redirect()
+                ->route('kategori-produk')
+                ->with(['warning' => ' ']);
+        } catch (QueryException $error_query) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with(['error' => $error_query->getMessage()]);
+        }
     }
 }

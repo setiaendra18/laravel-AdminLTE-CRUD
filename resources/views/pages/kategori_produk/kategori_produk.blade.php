@@ -12,18 +12,45 @@
                 <div class="card-header">
                     <h3 class="card-title">Tabel {{ $title }}</h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-primary" data-toggle="modal"
-                            data-target="#exampleModal">Tambah Data</button>
+                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-modal">Tambah
+                            Data</button>
                         <button type="button" class="btn btn-secondary">Secondary</button>
                     </div>
                 </div>
                 <div class="card-body">
-                    Start creating your amazing application!
+                    <table id="example2" class="table table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th width="5%">No.</th>
+                                <th width="20%">Nama Produk</th>
+                                <th width="11%">aksi</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @foreach ($kategori as $data)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{ $data->nama_kategori }}</td>
+                                    <td>
+                                        <button type="button" class="btn btn-danger btn-sm" title="Hapus"
+                                            data-toggle="modal" data-target="#hapus-modal" data-id="{{ $data->id }}"
+                                            data-nama-kategori="{{ $data->nama_kategori }}"><i
+                                                class="fa fa-trash"></i></button>
+                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                            data-id="{{ $data->id }}" data-nama-kategori="{{ $data->nama_kategori }}"
+                                            data-target="#edit-modal" title="Edit"><i class="fa fa-edit"></i></button>
+                                        <button type="button" class="btn btn-secondary btn-sm disabled" title="Detail"><i
+                                                class="fa fa-eye"></i></button>
                 </div>
-                <!-- /.card-body -->
-                <div class="card-footer">
-                    Footer
-                </div>
+                </td>
+                </tr>
+                @endforeach
+                </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+            <div class="card-footer">
+                sikil
                 <!-- /.card-footer-->
             </div>
             <!-- /.card -->
@@ -31,37 +58,26 @@
         <!-- /.content -->
     </div>
     <!-- /.content-wrapper -->
-    <!-- Modal -->
-    <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Formulir Penambahan Data {{ $title }}</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                    <form>
-                        <div class="form-group">
-                            <label for="exampleInputEmail1">Email address</label>
-                            <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp"
-                                placeholder="Enter email">
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone
-                                else.</small>
-                        </div>
-                        <div class="form-group">
-                            <label for="exampleInputPassword1">Password</label>
-                            <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-                        </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                    <button type="button" class="btn btn-primary">Simpan</button>
-                </div>
-                </form>
-            </div>
-        </div>
-    </div>
+    @include('pages.kategori_produk.modal')
 @endsection()
+@push('scripts')
+    <script>
+        $('#edit-modal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Mencari button sebagai trigger untuk melempar data
+            // mengambil data dari button 
+            var id = button.data('id')
+            console.log("id produk : " + id)
+            var nama_kategori = button.data('nama-kategori')
+            var modal = $(this)
+            modal.find('#nama_kategori').val(nama_kategori)
+            modal.find('#id_kategori').val(id)
+        })
+        $('#hapus-modal').on('show.bs.modal', function(event) {
+            var button = $(event.relatedTarget) // Mencari button sebagai trigger untuk melempar data
+            // mengambil data dari button 
+            var id = button.data('id')
+            var modal = $(this)
+            modal.find('#id_kategori').val(id)
+        })
+    </script>
+@endpush

@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
+class CreateProdukTable extends Migration
 {
     /**
      * Run the migrations.
@@ -15,11 +15,12 @@ return new class extends Migration
     {
         Schema::create('produk', function (Blueprint $table) {
             $table->id();
-            $table->integer('id_kategori');
+            $table->integer('id_kategori')->default(0);
             $table->string('nama_produk');
             $table->integer('harga');
             $table->text('deskripisi');
-           
+            
+            $table->foreign('id_kategori', 'FK_produk_kategori_produk')->references('id')->on('kategori_produk')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
@@ -32,4 +33,4 @@ return new class extends Migration
     {
         Schema::dropIfExists('produk');
     }
-};
+}

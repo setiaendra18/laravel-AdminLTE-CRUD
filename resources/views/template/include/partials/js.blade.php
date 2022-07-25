@@ -1,12 +1,6 @@
 <script src="{{ url('adminlte/plugins/jquery/jquery.min.js') }}"></script>
-<!-- Bootstrap 4 -->
 <script src="{{ url('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
-<!-- AdminLTE App -->
 <script src="{{ url('adminlte/js/adminlte.min.js') }}"></script>
-<!-- AdminLTE for demo purposes -->
-
-
-
 <script src="{{ url('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -28,21 +22,13 @@
                 toolbar: [
                     // [groupName, [list of button]]
                     ['style', ['bold', 'italic', 'underline', 'clear']],
-                    
                     ['fontsize', ['fontsize']],
                     ['color', ['color']],
                     ['para', ['ul', 'ol', 'paragraph']],
                     ['height', ['height']]
                 ]
             }
-
         )
-
-        // CodeMirror
-        CodeMirror.fromTextArea(document.getElementById("codeMirrorDemo"), {
-            mode: "htmlmixed",
-            theme: "monokai"
-        });
     })
     //data tabels load
     $(function() {
@@ -67,4 +53,10 @@
     $(document).ready(function() {
         $(".preloader").fadeOut();
     })
+    //flash message : menghilangkan flash mesagge setelah 3.5 detik
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#flash-message').fadeOut()
+        }, 3500);
+    });
 </script>

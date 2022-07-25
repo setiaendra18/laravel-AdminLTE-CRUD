@@ -13,6 +13,7 @@
     },
     "require-dev": {
         "barryvdh/laravel-debugbar": "^3.7",
+        "bennett-treptow/laravel-migration-generator": "^4.2",
         "fakerphp/faker": "^1.9.1",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.0.1",

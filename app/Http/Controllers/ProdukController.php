@@ -1,90 +1,110 @@
 <?php
-
 namespace App\Http\Controllers;
-
+use App\Models\ModelKategori;
+use App\Models\ModelProduk;
+use Illuminate\Database\QueryException;
 use Illuminate\Http\Request;
-
 class ProdukController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+    public function __construct()
+    {
+        //global variabel untuk setting untuk judul halaman
+        $this->title = "Produk";
+    }
     public function index()
     {
-        $title = "Produk";
-
-
+        $produk = ModelProduk::all();
+        $kategori = ModelKategori::all();
         return view(
             "pages.produk.produk",
-            ["title" => $title]
+            [
+                "title" => $this->title,
+                "kategori" => $kategori,
+                "produk" => $produk,
+            ]
         );
     }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         //
     }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
-        //
+        //validasi input user, error akan di kembalikan ke view
+        $this->validate($request, [
+            'nama_produk' => 'required|string|min:5|max:30',
+            'id_kategori' => 'required',
+            'keterangan' => 'required|string|min:10|max:150',
+            'harga' => 'required',
+        ]);
+        //ekekusi input user, error akan di handle oleh SQL Exception
+        try {
+            ModelProduk::create([
+                'nama_produk' => $request->nama_produk,
+                'keterangan' => $request->keterangan,
+                'id_kategori' => $request->id_kategori,
+                'harga' => $request->harga,
+            ]);
+            return redirect()
+                ->route('produk')
+                ->with(['success' => ' ']);
+        } catch (QueryException $error_query) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with(['error' => $error_query->getMessage()]);
+        }
     }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         //
     }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
     public function edit($id)
     {
         //
     }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        //validasi input user, error akan di kembalikan ke view
+        $this->validate($request, [
+            'nama_produk' => 'required|string|min:5|max:30',
+            'id_kategori' => 'required',
+            'keterangan' => 'required|string|min:10|max:150',
+            'harga' => 'required',
+        ]);
+         //cari data pada database dengan id yang sesuai request user
+        $produk = ModelProduk::findOrFail($request->id_produk);
+         //ekekusi input user, error akan di handle oleh SQL Exception
+        try {
+            $produk->update([
+                'nama_produk' => $request->nama_produk,
+                'keterangan' => $request->keterangan,
+                'id_kategori' => $request->id_kategori,
+                'harga' => $request->harga,
+            ]);
+            return redirect()
+                ->route('produk')
+                ->with(['info' => ' ']);
+        } catch (QueryException $error_query) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with(['error' => $error_query->getMessage()]);
+        }
     }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        $produk = ModelProduk::findOrFail($request->id_produk);
+        try {
+            $produk->delete();
+            return redirect()
+                ->route('produk')
+                ->with(['warning' => ' ']);
+        } catch (QueryException $error_query) {
+            return redirect()
+                ->back()
+                ->withInput()
+                ->with(['error' => $error_query->getMessage()]);
+        }
     }
 }

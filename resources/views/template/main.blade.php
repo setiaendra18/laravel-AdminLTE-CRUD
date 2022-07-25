@@ -7,7 +7,7 @@
     @include('template.include.partials.css')
 </head>
 <body class="hold-transition sidebar-mini">
-    <div class="wrapper">
+    <div class="wrapper" id="app">
         <div class="preloader">
             <div class="loading">
                 <img src="{{url('adminlte/img/loader/loaderbtc.gif')}}">
@@ -18,5 +18,6 @@
         @yield('content')
         @include('template.include.footer')
     </div>
+    @stack('scripts')
 </body>
 </html>
