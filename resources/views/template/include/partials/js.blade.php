@@ -2,7 +2,7 @@
 <script src="{{ url('adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <script src="{{ url('adminlte/js/adminlte.min.js') }}"></script>
 <script src="{{ url('adminlte/js/lottie.js') }}"></script>
-
+<script src="{{ url('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
 <script src="{{ url('adminlte/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -61,5 +61,17 @@
             $('#flash-message').fadeOut()
         }, 3500);
     });
+    $(document).ready(function() {
+        setTimeout(function() {
+            $('#error-input').fadeOut()
+        }, 5000);
+    });
+// Tool tip
+    $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
     
+
+// select2
+$('.select2').select2()
 </script>

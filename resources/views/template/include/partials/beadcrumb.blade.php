@@ -51,40 +51,42 @@
                                 <li>Data yang saling berelasi tidak dapat dihapus.</li>
                                 <li>Kesalahan pada ekekusi kueri sistem.</li>
                             </ol>
-                            <i>{{ session('error') }}</i>
+                            {{-- <i>{{ session('error') }}</i> --}}
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
                         </div>
                     @endif
-                    {{-- form validasi alert --}}
-                    @if (count($errors) > 0)
-                        <div class="card card-danger card-outline">
-                            <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-2">
-                                        <lottie-player src="{{ url('adminlte/img/loader/delete.json') }}"
-                                            background="transparent" speed="1"
-                                            style="width: 150px; height: 150px; margin: auto; " loop autoplay>
-                                        </lottie-player>
-                                    </div>
-                                    <div class="col-md-10">
-                                        <h4>Kesalahan input pada data <strong>{{ $title }} </strong>, data yang
-                                            masukan tidak sesuai, kolom yang tidak sesuai adalah sebagai berikut :</h3>
-                                            <ol>
-                                                @foreach ($errors->all() as $error)
-                                                    <li>
-                                                        <h5>{{ $error }}</h5>
-                                                    </li>
-                                                @endforeach
-                                            </ol>
-                                    </div>
+                @endif
+            </div>
+            <div id='error-input'>
+                {{-- form validasi alert --}}
+                @if (count($errors) > 0)
+                    <div class="card card-warning card-outline border border-warning">
+                        <div class="card-body">
+                            <div class="row">
+                                <div class="col-md-2">
+                                    <lottie-player src="{{ url('adminlte/img/animasi/warning.json') }}"
+                                        background="transparent" speed="1"
+                                        style="width: 130px; height: 130px; margin: auto; " loop autoplay>
+                                    </lottie-player>
+                                </div>
+                                <div class="col-md-10">
+                                    <h5>Kesalahan input pada data <strong>{{ $title }} </strong>, data yang
+                                        masukan tidak sesuai, kolom yang tidak sesuai adalah sebagai berikut :</h3>
+                                        <ul>
+                                            @foreach ($errors->all() as $error)
+                                                <li>
+                                                    <h6>{{ $error }} <i class="fas fa-xmark"></i></h6>
+                                                </li>
+                                            @endforeach
+                                        </ul>
                                 </div>
                             </div>
                         </div>
-                    @endif
-                    {{-- akhir form validasi alert --}}
+                    </div>
                 @endif
+                {{-- akhir form validasi alert --}}
             </div>
         </div>
     </div>

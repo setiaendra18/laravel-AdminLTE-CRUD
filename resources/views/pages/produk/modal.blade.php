@@ -3,7 +3,7 @@
        aria-hidden="true">
        <div class="modal-dialog" role="document">
            <div class="modal-content">
-               <div class="modal-header">
+               <div class="modal-header bg-gradient-success">
                    <h5 class="modal-title" id="exampleModalLabel">Formulir Penambahan Data :
                        <strong>{{ $title }}</strong>
                    </h5>
@@ -16,7 +16,7 @@
                        @csrf
                        <div class="form-group">
                            <label class="form-control-label">Kategori Wisata</label>
-                           <select class="form-control" name="id_kategori">
+                           <select class="form-control select2" name="id_kategori">
                                <option value="">-- Pilih Kategori {{ $title }} --</option>
                                @foreach ($kategori as $data)
                                    <option value="{{ $data->id }}">
@@ -60,7 +60,7 @@
        aria-hidden="true">
        <div class="modal-dialog" role="document">
            <div class="modal-content">
-               <div class="modal-header">
+               <div class="modal-header bg-gradient-info">
                    <h5 class="modal-title" id="exampleModalLabel">Formulir Perubahan Data :
                        <strong>{{ $title }}</strong>
                    </h5>
@@ -73,7 +73,7 @@
                        @csrf
                        <div class="form-group">
                            <label class="form-control-label">Kategori Wisata</label>
-                           <select class="form-control" name="id_kategori" id="kategori">
+                           <select class="form-control select2" name="id_kategori" id="kategori">
                                <option value="">-- Pilih Kategori {{ $title }} --</option>
                                @foreach ($kategori as $data)
                                    <option value="{{ $data->id }}">
@@ -86,7 +86,7 @@
                            <label>Tanggal</label>
                            <input type="date" class="form-control"
                                placeholder="Masukan Tanggal Pembelian {{ $title }} .." name="tanggal"
-                               id="tanggal">
+                               id="tanggal" >
                        </div>
                        <div class="form-group">
                            <label>Nama produk</label>
@@ -120,28 +120,31 @@
                <form action="{{ route('produk-hapus') }}" method="post">
                    @csrf
                    <div class="modal-body text-center">
-                       <lottie-player src="{{ url('adminlte/img/loader/delete.json') }}" background="transparent"
+                       <lottie-player src="{{ url('adminlte/img/animasi/delete.json') }}" background="transparent"
                            speed="1" style="width: 300px; height: 300px; margin: auto; " loop autoplay>
                        </lottie-player>
-                       <h4 class="nama_produk">Apakah anda yakin akan menghapus data ?</h5>
+                       <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                           <h5><strong><span id="nama_produk"></span></strong></h5>
+                           <h6>Apakah anda yakin akan menghapus data tersebut ?</h6>
+                       </div>
                    </div>
                    <div class="modal-footer">
                        <input type="hidden" name="id_produk" id="id_produk" value="">
                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
-                       <button type="submit" class="btn btn-danger">Hapus Data</button>
+                       <button type="submit" class="btn btn-warning">Ya , Hapus Data</button>
                    </div>
                </form>
            </div>
        </div>
    </div>
    <!-- View Modal -->
-   <div class="modal fade" id="view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+   <div class="modal fade " id="view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
        aria-hidden="true">
-       <div class="modal-dialog " role="document">
+       <div class="modal-dialog  modal-lg" role="document">
            <div class="modal-content">
-               <div class="modal-header">
-                   <h5 class="modal-title" id="exampleModalLabel">Formulir Perubahan Data :
-                       <strong>{{ $title }}</strong>
+               <div class="modal-header bg-gradient-dark">
+                   <h5 class="modal-title" id="exampleModalLabel">
+                       <strong>Data Detail {{ $title }} : <span id="nama_produk"></span></strong>
                    </h5>
                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                        <span aria-hidden="true">&times;</span>
@@ -150,12 +153,41 @@
                <div class="modal-body">
                    <div class="card-body">
                        <dl class="row">
-                           <dt class="col-sm-4">ID PRODUCT</dt>
-                           <dd class="col-sm-8" id="id_produk">id</dd>
-                           <dt class="col-sm-4">NAMA PRODUK</dt>
-                           <dd class="col-sm-8">{!! "<p id='nama_produk'>nama</p>" !!} </dd>
-                           <dt class="col-sm-4">Keterangan</dt>
-                           <dd class="col-sm-8">{!! "<h3 id='nama_produk'>nama</h3>" !!} </dd>
+                        <table class="table table-light table-striped">
+                            <thead>
+                            <tbody>
+                              <tr>
+                                <th >KODE PRODUK</th>
+                                <td>:</td>
+                                <td><span id="id_produk"></span></td>
+                              </tr>
+                              <tr>
+                                <th>TANGGAL INPUT</th>
+                                <td >:</td>
+                                <td><span id="tanggal"></span> ( <span id="tanggal_selisih"></span> )</td>
+                              </tr>
+                              <tr>
+                                <th>KATEGORI PRODUK</th>
+                                <td >:</td>
+                                <td><span id="kategori"></span></td>
+                              </tr>
+                              <tr>
+                                <th>NAMA PRODUK</th>
+                                <td >:</td>
+                                <td><span id="nama_produk"></span></td>
+                              </tr>
+                              <tr>
+                                <th>HARGA</th>
+                                <td >:</td>
+                                <td>Rp. <span id="harga"></span></td>
+                              </tr>
+                              <tr>
+                                <th>KETERANGAN</th>
+                                <td >:</td>
+                                <td><span id="keterangan"></span></td>
+                              </tr>
+                            </tbody>
+                          </table>
                        </dl>
                    </div>
                </div>
@@ -171,7 +203,7 @@
        aria-hidden="true">
        <div class="modal-dialog " role="document">
            <div class="modal-content">
-               <div class="modal-header">
+               <div class="modal-header bg-gradient-primary">
                    <h5 class="modal-title" id="exampleModalLabel">Formulir Ekspor Data :
                        <strong>{{ $title }}</strong>
                    </h5>
@@ -181,18 +213,17 @@
                </div>
                <div class="modal-body">
                    <div class="card-body text-center">
-                    
-                       <a class="btn btn-app bg-secondary" onclick="showData()">
-                           <i class="fas fa-barcode"></i> JSON
+                       <a class="btn btn-app bg-secondary" onclick="alertModal()">
+                           <i class="fas fa-file"></i> JSON
                        </a>
                        <a class="btn btn-app bg-success">
-                           <i class="fas fa-users"></i> Excel
+                           <i class="fas fa-file-excel"></i> Excel
                        </a>
                        <a class="btn btn-app bg-olive">
-                           <i class="fas fa-inbox"></i> CSV
+                           <i class="fas fa-file-csv"></i> CSV
                        </a>
                        <a class="btn btn-app bg-danger">
-                           <i class="fas fa-envelope"></i> PDF
+                           <i class="fas fa-file-pdf"></i> PDF
                        </a>
                    </div>
                </div>
@@ -205,20 +236,11 @@
    </div>
    @push('scripts')
        <script>
-            function store() {
-                alert('hahahahahh')
-            }
+           function alertModal() {
+               alert('masih pengembangan')
+           }
            $('#create-modal').on('show.bs.modal', function(event) {
                var button = $(event.relatedTarget) // Mencari button sebagai trigger untuk melempar data
-               // mengambil data dari button 
-               var id = button.data('id')
-               var keterangan = button.data('keterangan')
-               var nama_produk = button.data('nama-produk')
-               var modal = $(this)
-               modal.find('#nama_produk').val(nama_produk)
-               modal.find('#harga').val(harga)
-               modal.find(' .keterangan').val(keterangan)
-               modal.find('#id_produk').val(id)
            })
            $('#edit-modal').on('show.bs.modal', function(event) {
                var button = $(event.relatedTarget) // Mencari button sebagai trigger untuk melempar data
@@ -245,18 +267,32 @@
                var button = $(event.relatedTarget) // Mencari button sebagai trigger untuk melempar data
                // mengambil data dari button 
                var id = button.data('id')
+               var tanggal = button.data('tanggal')
+               var tanggal_selisih = button.data('tanggal-selisih')
+               var harga = button.data('harga')
+               var keterangan = button.data('keterangan')
+               var kategori = button.data('kategori')
                console.log("id produk : " + id)
+               console.log("tanggal : " + tanggal_selisih)
                var nama_produk = button.data('nama-produk')
                var modal = $(this)
-               modal.find('#nama_produk').val(nama_produk)
-               modal.find('#id_produk').val(id)
+               modal.find('#nama_produk').text(nama_produk)
+               modal.find('#harga').text(harga)
+               modal.find('#keterangan').text(keterangan)
+               modal.find('#id_produk').text(id)
+               modal.find('#tanggal').text(tanggal)
+               modal.find('#kategori').text(kategori)
+               modal.find('#tanggal_selisih').text(tanggal_selisih)
            })
            $('#hapus-modal').on('show.bs.modal', function(event) {
                var button = $(event.relatedTarget) // Mencari button sebagai trigger untuk melempar data
                // mengambil data dari button 
                var id = button.data('id')
+               var nama_produk = button.data('nama-produk')
+               console.log("nama produk : " + nama_produk)
                var modal = $(this)
                modal.find('#id_produk').val(id)
+               modal.find('#nama_produk').text(nama_produk)
            })
        </script>
    @endpush

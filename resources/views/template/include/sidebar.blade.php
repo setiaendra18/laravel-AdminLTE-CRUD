@@ -21,19 +21,20 @@
                   data-accordion="false">
                   <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ request()->is('/') ? 'active' : '' }}">
-                      <i class="nav-icon far fa-circle"></i>
+                      <i class="nav-icon fa fa-chart-line"></i>
                         <p>Dashboard</p>
                     </a>
                 </li>
                   <li class="nav-item">
                       <a href="{{ route('produk') }}" class="nav-link {{ request()->is('produk') ? 'active' : '' }}">
-                        <i class="nav-icon far fa-circle"></i>
+                        <i class="nav-icon fa fa-cubes"></i>
                           <p>Produk</p>
                       </a>
                   </li>
                   <li class="nav-item">
                       <a href="{{ route('kategori-produk') }}" class="nav-link {{ request()->is('kategori-produk') ? 'active' : '' }}">
-                        <i class="nav-icon far fa-circle"></i>
+                        <i class="nav-icon fa fa-file"></i>
+                    
                           <p> Kategori Produk</p>
                       </a>
                   </li>

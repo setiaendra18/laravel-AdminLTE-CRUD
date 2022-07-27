@@ -12,15 +12,16 @@
                 <div class="card-header">
                     <h3 class="card-title">Tabel {{ $title }}</h3>
                     <div class="card-tools">
-                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#create-modal">Tambah
-                            Data</button>
-                        <button type="button" class="btn btn-secondary">Secondary</button>
+                        <button type="button" class="btn btn-outline-success" data-toggle="modal"
+                        data-target="#create-modal"><i class="fa fa-plus"></i> Tambah
+                        Data</button>
+                        
                     </div>
                 </div>
                 <div class="card-body">
-                    <table id="example2" class="table table-bordered table-hover">
+                    <table id="example2" class="table table-bordered table-hover table-striped">
                         <thead>
-                            <tr>
+                            <tr class="bg-gradient-secondary text-center">
                                 <th width="5%">No.</th>
                                 <th width="20%">Nama Produk</th>
                                 <th width="11%">aksi</th>
@@ -32,14 +33,14 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <td>{{ $data->nama_kategori }}</td>
                                     <td>
-                                        <button type="button" class="btn btn-danger btn-sm" title="Hapus"
+                                        <button type="button" class="btn btn-outline-warning btn-sm" title="Hapus"
                                             data-toggle="modal" data-target="#hapus-modal" data-id="{{ $data->id }}"
                                             data-nama-kategori="{{ $data->nama_kategori }}"><i
                                                 class="fa fa-trash"></i></button>
-                                        <button type="button" class="btn btn-info btn-sm" data-toggle="modal"
+                                        <button type="button" class="btn btn-outline-info btn-sm"  data-toggle="modal"
                                             data-id="{{ $data->id }}" data-nama-kategori="{{ $data->nama_kategori }}"
                                             data-target="#edit-modal" title="Edit"><i class="fa fa-edit"></i></button>
-                                        <button type="button" class="btn btn-secondary btn-sm disabled" title="Detail"><i
+                                        <button type="button" class="btn btn-outline-dark btn-sm disabled" title="Detail"><i
                                                 class="fa fa-eye"></i></button>
                 </div>
                 </td>
@@ -60,24 +61,3 @@
     <!-- /.content-wrapper -->
     @include('pages.kategori_produk.modal')
 @endsection()
-@push('scripts')
-    <script>
-        $('#edit-modal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Mencari button sebagai trigger untuk melempar data
-            // mengambil data dari button 
-            var id = button.data('id')
-            console.log("id produk : " + id)
-            var nama_kategori = button.data('nama-kategori')
-            var modal = $(this)
-            modal.find('#nama_kategori').val(nama_kategori)
-            modal.find('#id_kategori').val(id)
-        })
-        $('#hapus-modal').on('show.bs.modal', function(event) {
-            var button = $(event.relatedTarget) // Mencari button sebagai trigger untuk melempar data
-            // mengambil data dari button 
-            var id = button.data('id')
-            var modal = $(this)
-            modal.find('#id_kategori').val(id)
-        })
-    </script>
-@endpush
