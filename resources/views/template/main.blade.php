@@ -8,11 +8,12 @@
 </head>
 <body class="hold-transition sidebar-mini">
     <div class="wrapper" id="app">
-        <div class="preloader">
+        {{-- <div class="preloader">
             <div class="loading">
-                <img src="{{url('adminlte/img/loader/loaderbtc.gif')}}">
+                <lottie-player src="{{ url('adminlte/img/loader/loader2.json') }}" background="transparent"
+                speed="1" style="width: 300px; height: 300px; margin: auto; " loop autoplay></lottie-player>
             </div>
-        </div>
+        </div> --}}
         @include('template.include.navbar')
         @include('template.include.sidebar')
         @yield('content')

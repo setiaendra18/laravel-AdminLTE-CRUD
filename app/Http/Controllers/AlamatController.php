@@ -13,7 +13,7 @@ class AlamatController extends Controller
     }
     public function index()
     {
-        return view("pages.produk.produk", ["title" => $this->title]);
+        return view("pages.alamat.alamat", ["title" => $this->title]);
     }
     public function create()
     {

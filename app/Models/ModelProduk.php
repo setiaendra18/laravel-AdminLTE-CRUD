@@ -12,9 +12,11 @@ class ModelProduk extends Model
         'keterangan',
         'harga',
         'id_kategori',
+        'tanggal'
     ];
     public function kategori()
     {
-        return $this->hasOne(ModelKategori::class);
-    }
+        return $this->belongsTo(ModelKategori::class, 'id_kategori');
+
+}
 }

@@ -32,10 +32,11 @@ class ProdukController extends Controller
     {
         //validasi input user, error akan di kembalikan ke view
         $this->validate($request, [
-            'nama_produk' => 'required|string|min:5|max:30',
+            'nama_produk' => 'required|string|min:1|max:30',
             'id_kategori' => 'required',
             'keterangan' => 'required|string|min:10|max:150',
             'harga' => 'required',
+            'tanggal'=>'required'
         ]);
         //ekekusi input user, error akan di handle oleh SQL Exception
         try {
@@ -44,6 +45,7 @@ class ProdukController extends Controller
                 'keterangan' => $request->keterangan,
                 'id_kategori' => $request->id_kategori,
                 'harga' => $request->harga,
+                'tanggal'=>$request->tanggal
             ]);
             return redirect()
                 ->route('produk')
@@ -67,10 +69,11 @@ class ProdukController extends Controller
     {
         //validasi input user, error akan di kembalikan ke view
         $this->validate($request, [
-            'nama_produk' => 'required|string|min:5|max:30',
+            'nama_produk' => 'required|string|min:1|max:30',
             'id_kategori' => 'required',
             'keterangan' => 'required|string|min:10|max:150',
             'harga' => 'required',
+            'tanggal'=>'required'
         ]);
          //cari data pada database dengan id yang sesuai request user
         $produk = ModelProduk::findOrFail($request->id_produk);
@@ -81,6 +84,7 @@ class ProdukController extends Controller
                 'keterangan' => $request->keterangan,
                 'id_kategori' => $request->id_kategori,
                 'harga' => $request->harga,
+                'tanggal'=>$request->tanggal
             ]);
             return redirect()
                 ->route('produk')

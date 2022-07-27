@@ -24,4 +24,5 @@ href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&d
     transform: translate(-50%, -50%);
     font: 14px arial;
 }
+
 </style>
