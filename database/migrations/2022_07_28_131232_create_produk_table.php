@@ -14,13 +14,12 @@ class CreateProdukTable extends Migration
     public function up()
     {
         Schema::create('produk', function (Blueprint $table) {
-            $table->id();
-            $table->integer('id_kategori')->default(0);
-            $table->string('nama_produk');
-            $table->integer('harga');
-            $table->text('deskripisi');
-            
-            $table->foreign('id_kategori', 'FK_produk_kategori_produk')->references('id')->on('kategori_produk')->onDelete('cascade')->onUpdate('cascade');
+            $table->integer('id', true);
+            $table->string('nama_produk', 50)->default('0');
+            $table->text('keterangan');
+            $table->date('tanggal')->nullable();
+            $table->integer('harga')->nullable();
+            $table->integer('id_kategori')->default(0)->index('FK_produk_kategori');
         });
     }
 

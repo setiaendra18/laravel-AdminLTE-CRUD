@@ -3,7 +3,10 @@ use App\Http\Controllers\AlamatController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\KategoriProdukController;
 use App\Http\Controllers\ProdukController;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+
+
 Route::controller(DashboardController::class)->group(function () {
     Route::get('/', 'index')->name('dashboard');
 });
@@ -22,3 +25,8 @@ Route::controller(KategoriProdukController::class)->group(function () {
 Route::controller(AlamatController::class)->group(function () {
     Route::get('/alamat', 'index')->name('alamat');
 });
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+

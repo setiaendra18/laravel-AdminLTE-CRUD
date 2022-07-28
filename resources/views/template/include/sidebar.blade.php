@@ -34,7 +34,6 @@
                   <li class="nav-item">
                       <a href="{{ route('kategori-produk') }}" class="nav-link {{ request()->is('kategori-produk') ? 'active' : '' }}">
                         <i class="nav-icon fa fa-file"></i>
-                    
                           <p> Kategori Produk</p>
                       </a>
                   </li>
