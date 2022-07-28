@@ -1,7 +1,8 @@
 # Laravel + AdminTLE - Strater Project Template
-[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs)
-[![GPLv3 License](https://img.shields.io/badge/License-GPL%20v3-yellow.svg)](https://opensource.org/licenses/)
-[![AGPL License](https://img.shields.io/badge/license-AGPL-blue.svg)](http://www.gnu.org/licenses/agpl-3.0)
+[![](https://img.shields.io/github/issues/setiaendra18/laravel-AdminLTE-CRUD)](https://img.shields.io/github/issues/setiaendra18/laravel-AdminLTE-CRUD)
+[![](https://img.shields.io/github/forks/setiaendra18/laravel-AdminLTE-CRUD)](https://img.shields.io/github/forks/setiaendra18/laravel-AdminLTE-CRUD)
+[![](https://img.shields.io/github/stars/setiaendra18/laravel-AdminLTE-CRUD)](https://img.shields.io/github/stars/setiaendra18/laravel-AdminLTE-CRUD)
+[![](https://img.shields.io/github/license/setiaendra18/laravel-AdminLTE-CRUD)](https://img.shields.io/github/license/setiaendra18/laravel-AdminLTE-CRUD)
 
 Template proyek ini dibuat dengan menggunakan [Framework Laravel 9.21.5](https://laravel.com/)  dan Template Admin [AdminLTE 3.20](https://adminlte.io/)  
 yang dapat digunakan untuk membuat administrasi panel pada sebuah proyek
